@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BezierMethod.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">client</a> &gt; <a href="index.source.html" class="el_package">Controller</a> &gt; <span class="el_source">BezierMethod.java</span></div><h1>BezierMethod.java</h1><pre class="source lang-java linenums">package Controller;
+
+import Model.LineModel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.awt.*;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc bnc" id="L13" title="All 22 branches missed.">@Data</span>
+@Getter
+<span class="nc" id="L15">@Setter</span>
+public class BezierMethod {
+
+<span class="nc" id="L18">    private List&lt;Point2D.Double&gt; listPoints = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L19">    private Point2D.Double startPoint = new Point2D.Double(0.0, 0.0);</span>
+
+    public List&lt;LineModel&gt; getBezierCurves(Color color) {
+<span class="nc" id="L22">        List&lt;LineModel&gt; curve = new ArrayList&lt;&gt;();</span>
+        Point2D.Double nextPoint;
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        if (listPoints.size() &lt; 3) {</span>
+<span class="nc" id="L25">            curve.add(new LineModel(listPoints.get(0), listPoints.get(1), color));</span>
+        } else {
+<span class="nc" id="L27">            startPoint = listPoints.get(0);</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            for (double param = 0.0; param &lt; 1.0; param += 0.001) {</span>
+<span class="nc" id="L29">                nextPoint = getPointsForBezierCurves(listPoints, param);</span>
+<span class="nc" id="L30">                curve.add(new LineModel(startPoint, nextPoint, color));</span>
+<span class="nc" id="L31">                startPoint = nextPoint;</span>
+            }
+        }
+<span class="nc" id="L34">        return curve;</span>
+    }
+
+    private Point2D.Double getPointsForBezierCurves(List&lt;Point2D.Double&gt; points, double param) {
+<span class="nc" id="L38">        List&lt;Point2D.Double&gt; pointsForCurveDraw = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">        if (param &lt; 0 || param &gt; 1) {</span>
+<span class="nc" id="L40">            throw new IllegalArgumentException(&quot;Parameter &gt; 0 and &lt; 1&quot;);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        } else if (points.isEmpty()) {</span>
+<span class="nc" id="L42">            throw new IllegalArgumentException(&quot;Empty points list&quot;);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        } else if (points.size() == 1) {</span>
+<span class="nc" id="L44">            return points.get(0);</span>
+        } else {
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (int i = 0; i &lt; points.size() - 1; i++) {</span>
+<span class="nc" id="L47">                pointsForCurveDraw.add(calculatePoints(points, param, i));</span>
+            }
+<span class="nc" id="L49">            points = pointsForCurveDraw;</span>
+<span class="nc" id="L50">            return getPointsForBezierCurves(points, param);</span>
+        }
+    }
+
+    // вычисление точек для отрисовки кривой Безье
+    private Point2D.Double calculatePoints(List&lt;Point2D.Double&gt; points, double param, int i) {
+<span class="nc" id="L56">        double x = points.get(i + 1).getX() * param - points.get(i).getX() * (param - 1);</span>
+<span class="nc" id="L57">        double y = points.get(i + 1).getY() * param - points.get(i).getY() * (param - 1);</span>
+<span class="nc" id="L58">        return new Point2D.Double(x, y);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
