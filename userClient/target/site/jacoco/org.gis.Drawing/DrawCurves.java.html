@@ -12,21 +12,22 @@ public class DrawCurves {
 <span class="nc" id="L12">        this.panel = panel;</span>
 <span class="nc" id="L13">        this.bezierMethod = bezierMethod;</span>
 <span class="nc" id="L14">    }</span>
+
     public void drawCurves(String com, int width, int height) {
-<span class="nc" id="L16">        command.parseCommand(com, width, height);</span>
-<span class="nc bnc" id="L17" title="All 2 branches missed.">        if (command.getCommandLine().getAction().equals(&quot;start&quot;)) {</span>
-<span class="nc" id="L18">            panel.getLineModels().addAll(panel.getTemporaryLineModels());</span>
-<span class="nc" id="L19">            panel.getTemporaryLineModels().clear();</span>
-<span class="nc" id="L20">            bezierMethod.getListPoints().clear();</span>
-<span class="nc" id="L21">            panel.repaint();</span>
-<span class="nc" id="L22">            bezierMethod.setStartPoint(command.getCommandLine().getPoints());</span>
-<span class="nc" id="L23">            bezierMethod.getListPoints().add(command.getCommandLine().getPoints());</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        } else if (command.getCommandLine().getAction().equals(&quot;move&quot;)) {</span>
-<span class="nc" id="L25">            bezierMethod.getListPoints().add(command.getCommandLine().getPoints());</span>
-<span class="nc" id="L26">            panel.getTemporaryLineModels().clear();</span>
-<span class="nc" id="L27">            panel.getTemporaryLineModels().addAll(bezierMethod.getBezierCurves(command.getCommandLine().getColor()));</span>
-<span class="nc" id="L28">            panel.repaint();</span>
+<span class="nc" id="L17">        command.parseCommand(com, width, height);</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        if (command.getCommandLine().getAction().equals(&quot;start&quot;)) {</span>
+<span class="nc" id="L19">            panel.getLineModels().addAll(panel.getTemporaryLineModels());</span>
+<span class="nc" id="L20">            panel.getTemporaryLineModels().clear();</span>
+<span class="nc" id="L21">            bezierMethod.getListPoints().clear();</span>
+<span class="nc" id="L22">            panel.repaint();</span>
+<span class="nc" id="L23">            bezierMethod.setStartPoint(command.getCommandLine().getPoints());</span>
+<span class="nc" id="L24">            bezierMethod.getListPoints().add(command.getCommandLine().getPoints());</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        } else if (command.getCommandLine().getAction().equals(&quot;move&quot;)) {</span>
+<span class="nc" id="L26">            bezierMethod.getListPoints().add(command.getCommandLine().getPoints());</span>
+<span class="nc" id="L27">            panel.getTemporaryLineModels().clear();</span>
+<span class="nc" id="L28">            panel.getTemporaryLineModels().addAll(bezierMethod.getBezierCurves(command.getCommandLine().getColor()));</span>
+<span class="nc" id="L29">            panel.repaint();</span>
         }
-<span class="nc" id="L30">    }</span>
+<span class="nc" id="L31">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

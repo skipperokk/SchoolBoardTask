@@ -25,7 +25,6 @@ public class UserThread extends Thread {
             BezierMethod bezierMethod = new BezierMethod();
             DrawCurves drawCurves = new DrawCurves(command, panel, bezierMethod);
             while (socket.isConnected() && (inCommand = reader.readLine()) != null) {
-                System.out.println(inCommand);
                 drawCurves.drawCurves(inCommand, panel.getParent().getWidth(), panel.getParent().getHeight());
             }
         } catch (IOException e) {

@@ -12,6 +12,7 @@ public class DrawCurves {
         this.panel = panel;
         this.bezierMethod = bezierMethod;
     }
+
     public void drawCurves(String com, int width, int height) {
         command.parseCommand(com, width, height);
         if (command.getCommandLine().getAction().equals("start")) {

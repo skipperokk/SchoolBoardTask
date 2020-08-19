@@ -19,7 +19,6 @@ public class ServerApplication {
 
             String commandLine;
             while ((commandLine = reader.readLine()) != null) {
-                System.out.println(commandLine);
                 writer.write(commandLine);
                 writer.newLine();
                 writer.flush();
